@@ -1,4 +1,22 @@
-
 dependencies {
 
+}
+
+task cmdLaunch(type: JavaExec) {
+  main = 'kz.greetgo.cm.cmd.MainLauncher'
+  args = ['show_command_to_execute', project.buildDir]
+  classpath sourceSets.test.runtimeClasspath
+}
+
+task cmdFileCreator() {
+  dependsOn classes
+  def cmdFileDir = file("$buildDir/cmd")
+  outputs.dir cmdFileDir
+  doLast {
+    cmdFileDir.mkdirs()
+    def text = "java"
+    text += " -cp " + sourceSets.test.runtimeClasspath.join(":")
+    text += " kz.greetgo.cm.cmd.MainLauncher"
+    new File(cmdFileDir, "run.cmd.txt").text = text
+  }
 }
