@@ -1,5 +1,7 @@
 package kz.greetgo.cm.cmd;
 
+import kz.greetgo.cm.robot.RobotManager;
+
 import java.io.InputStream;
 import java.io.PrintStream;
 
@@ -19,9 +21,18 @@ public class MainLauncher {
         out.write(buf, 0, count);
       }
 
+      System.out.println("Hello from MainLauncher: totalCount = " + totalCount);
+      return;
     }
-    System.out.println("Hello from MainLauncher: totalCount = " + totalCount);
 
-//    System.out.println("hi args.length = " + args.length);
+
+    if (args.length >= 2 && "robot".equals(args[0])) {
+      RobotManager robotManager = new RobotManager();
+      robotManager.name = args[1];
+      robotManager.start();
+      return;
+    }
+
+    throw new RuntimeException("Unknown command");
   }
 }
