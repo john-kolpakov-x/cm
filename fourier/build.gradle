@@ -1,0 +1,3 @@
+dependencies {
+  compile 'com.github.hageldave.ezfftw:ezfftw:0.1.2'
+}

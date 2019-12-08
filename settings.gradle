@@ -4,3 +4,4 @@ rootProject.name = 'cm'
 include "cmd"
 include "robot"
 include "common"
+include "fourier"
